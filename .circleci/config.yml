@@ -420,7 +420,7 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
-          name: Remove old stacks and files
+          name: Remove old stacks and filesa
           command: |
             export OldWorkflowID=$(curl -H "token: << pipeline.parameters.memstash-token >>" --request GET https://api.memstash.io/values/old_workflow_id_${CIRCLE_WORKFLOW_ID})
             echo "Old Workflow ID: ${OldWorkflowID}"
