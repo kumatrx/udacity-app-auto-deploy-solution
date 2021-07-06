@@ -256,7 +256,7 @@ jobs:
             npm run migrations > migration.log
             cat migration.log
             migration_status=$(cat migration.log | grep -c "has been executed successfully")
-            if [ $migration_status > 0 ]; then exit 0; else exit 1; fi;
+          # if [ $migration_status > 0 ]; then exit 0; else exit 1; fi;
       - run:
           name: Send migration results to memstash
           command: |
@@ -424,7 +424,10 @@ jobs:
           command: |
             export OldWorkflowID=$(curl -H "token: << pipeline.parameters.memstash-token >>" --request GET https://api.memstash.io/values/old_workflow_id_${CIRCLE_WORKFLOW_ID})
             echo "Old Workflow ID: ${OldWorkflowID}"
-            if [ "${OldWorkflowID}" != "<< pipeline.parameters.workflow-id >>" ]
+            if [ -z "${OldWorkflowID}" ]
+            then
+              echo "1st implementation"
+            elif [ "${OldWorkflowID}" != "<< pipeline.parameters.workflow-id >>" ]
             then
               aws s3 rm --recursive s3://udapeople-${OldWorkflowID}
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
@@ -448,12 +451,12 @@ workflows:
           filters:
             branches:
               only: [master]
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
       - deploy-backend:
-          requires: [configure-infrastructure]
+          requires: [run-migrations]
       - deploy-frontend:
-          requires: [configure-infrastructure]
+          requires: [run-migrations]
       - smoke-test:
           requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
