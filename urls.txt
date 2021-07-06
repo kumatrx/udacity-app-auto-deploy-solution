@@ -9,6 +9,10 @@ https://app.circleci.com/pipelines/github/kumatrx/udacity-app-auto-deploy-soluti
 
 4. Public URLs to deployed application back-end in EC2 [URL04]
 
-5. Public URL to your Prometheus Server [URL05]
 
+5. Public URL to your Prometheus Server [URL05]
+http://ec2-54-249-222-174.ap-northeast-1.compute.amazonaws.com:9090/
+
+6. Public URL to your Alert Manager [URL06]
+http://ec2-54-249-222-174.ap-northeast-1.compute.amazonaws.com:9093/#/alerts
 
