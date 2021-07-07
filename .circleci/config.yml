@@ -133,6 +133,7 @@ jobs:
           name: Font-end security scan
           command: |
             cd frontend
+            npm install
             npm audit fix --audit-level=critical --force
       - slack/notify:
           event: fail
@@ -152,6 +153,7 @@ jobs:
           name: Back-end analyze
           command: |
             cd backend
+            npm install
             npm audit fix --audit-level=critical --force
       - slack/notify:
           event: fail
