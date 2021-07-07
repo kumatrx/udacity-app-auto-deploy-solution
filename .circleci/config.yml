@@ -348,20 +348,20 @@ jobs:
           command: |
             if curl -s https://${BACKEND_URL}:3030/api/status
             then
-            return 1
-            else
             return 0
+            else
+            return 1
             fi
       - run:
           name: Frontend smoke test.
           command: |
-            URL="http://udapeople-<< pipeline.parameters.workflow-id >>.s3-website-eu-west-3.amazonaws.com"
+            URL="https://udapeople-<< pipeline.parameters.workflow-id >>.s3-ap-northeast-1.amazonaws.com"
             echo $URL
             if curl -s ${URL} | grep "Welcome"
             then
-            return 1
-            else
             return 0
+            else
+            return 1
             fi
       - run:
           name: Install AWS CLI for rollback
