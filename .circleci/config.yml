@@ -336,20 +336,8 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            cd /home
-            echo ENVIRONMENT=production > /home/circleci/project/backend/dist/.env
-            echo TYPEORM_CONNECTION=postgres >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_MIGRATIONS=./src/migrations/*.ts >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> /home/circleci/project/backend/dist/.env
-            echo NODE_ENV=production >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_HOST=$TYPEORM_HOST >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_PORT=$TYPEORM_PORT >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> /home/circleci/project/backend/dist/.env
-            echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> /home/circleci/project/backend/dist/.env
-            
-            tar czf backend.tar.gz -P /home/circleci/project/backend/dist
+            cd /home         
+            tar czf backend.tar.gz -P /home/circleci/project/backend
       - run:
           name: Deploy backend 2
           command: |
