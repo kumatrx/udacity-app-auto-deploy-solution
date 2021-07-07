@@ -3,13 +3,13 @@ https://github.com/kumatrx/udacity-app-auto-deploy-solution
 https://app.circleci.com/pipelines/github/kumatrx/udacity-app-auto-deploy-solution
 
 2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]:
-https://udapeople-1f8480e.s3.ap-northeast-1.amazonaws.com/index.html#/employees
+https://udapeople-6e013a6.s3.ap-northeast-1.amazonaws.com/index.html#/employees
 
 3. Public URL for your CloudFront distribution (aka, your blue production front-end) [URL03]
-d1fbsfkce2ausa.cloudfront.net
+dszmgdlvw9eyl.cloudfront.net
 
 4. Public URLs to deployed application back-end in EC2 [URL04]
-ec2-54-168-169-153.ap-northeast-1.compute.amazonaws.com:3030/api/status
+ec2-3-112-247-122.ap-northeast-1.compute.amazonaws.com:3030/api/status
 
 5. Public URL to your Prometheus Server [URL05]
 http://ec2-54-249-222-174.ap-northeast-1.compute.amazonaws.com:9090/
