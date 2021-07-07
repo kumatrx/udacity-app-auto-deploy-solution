@@ -29,7 +29,7 @@ commands:
     description: Revert the last migration if successfully run in the current workflow.
     # parameters:
     steps:
-      # Trigger rollback jobs if the smoke tests or any following jobs fail.
+      # Trigger rollback jobs if the smoke tests or any following jobs fail. deploy
       # Revert the last migration (IF a new migration was applied) on the database to that it goes back to the way it was before. You can use that value you saved in MemStash.io to know if you should revert any migrations.
       - run:
           name: Revert migrations
