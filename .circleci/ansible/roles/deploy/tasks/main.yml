@@ -10,7 +10,9 @@
     tar xzvf backend.tar.gz
     mv home/circleci/project/backend .
     cd backend
-    npm run build
+    npm install -g npm@latest
+    npm install -g webpack-dev-server
+    npm install
 
 - name: "run migrations and save status to https://memstash.io/"
   shell: |
