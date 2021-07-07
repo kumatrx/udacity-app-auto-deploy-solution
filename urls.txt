@@ -3,7 +3,7 @@ https://github.com/kumatrx/udacity-app-auto-deploy-solution
 https://app.circleci.com/pipelines/github/kumatrx/udacity-app-auto-deploy-solution
 
 2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]:
-https://udapeople-c235947.s3.ap-northeast-1.amazonaws.com/index.html#/employees
+https://udapeople-1f8480e.s3.ap-northeast-1.amazonaws.com/index.html#/employees
 
 3. Public URL for your CloudFront distribution (aka, your blue production front-end) [URL03]
 d1fbsfkce2ausa.cloudfront.net
