@@ -10,9 +10,7 @@
     tar xzvf backend.tar.gz
     mv home/circleci/project/backend .
     cd backend
-    sudo npm install -g npm@latest
-    sudo npm install -g webpack-dev-server
-    sudo npm install
-    sudo npm audit fix
-    sudo npm run build
-    sudo pm2 start npm --name backend -- start
+    npm audit fix && npm run build
+    cd dist
+    echo `pwd` >> ansible-test.txt
+    pm2 start npm --name backend -- start
