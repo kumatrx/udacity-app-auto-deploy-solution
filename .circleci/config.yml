@@ -61,7 +61,7 @@ jobs:
             sudo npm run build
       - save_cache:
           paths: [frontend/node_modules]
-          key: frontend-build  # -<< pipeline.id >>
+          key: frontend-build
       - slack/notify:
           event: fail
           template: basic_fail_1
@@ -77,15 +77,15 @@ jobs:
           name: Back-end build
           command: |
             cd backend
-            npm i
-            npm install
-            npm run build
+            sudo npm i
+            sudo npm install
+            sudo npm run build
       - save_cache:
           paths: [backend/node_modules]
-          key: backend-build  # -<< pipeline.id >>
+          key: backend-build
       - save_cache:
           paths: [backend/dist]
-          key: backend-dist  # -<< pipeline.id >>
+          key: backend-dist
       - slack/notify:
           event: fail
           template: basic_fail_1
@@ -325,13 +325,30 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible openssh-client tar gzip 
+            apk add --no-cache curl
+            apk add --no-cache --upgrade bash
+            apk add --no-cache --update ansible
+            apk add --no-cache openssh-client
+            apk add --update tar gzip
+            pip3 install awscli
       - restore_cache:
           keys: ["backend-dist"]
       - run:
           name: Deploy backend
           command: |
             cd /home
+            echo ENVIRONMENT=production > /home/circleci/project/backend/dist/.env
+            echo TYPEORM_CONNECTION=postgres >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_MIGRATIONS=./src/migrations/*.ts >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> /home/circleci/project/backend/dist/.env
+            echo NODE_ENV=production >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_HOST=$TYPEORM_HOST >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_PORT=$TYPEORM_PORT >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> /home/circleci/project/backend/dist/.env
+            echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> /home/circleci/project/backend/dist/.env
+            
             tar czf backend.tar.gz -P /home/circleci/project/backend/dist
       - run:
           name: Deploy backend 2
