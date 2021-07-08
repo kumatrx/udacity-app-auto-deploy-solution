@@ -452,4 +452,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - deploy-backend
+      - deploy-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - deploy-backend:
+          requires: [configure-infrastructure]
