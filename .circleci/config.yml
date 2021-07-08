@@ -453,8 +453,11 @@ jobs:
 workflows:
   default:
     jobs:
+      - build-frontend
       - deploy-infrastructure
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - deploy-backend:
           requires: [configure-infrastructure]
+      - cleanup:
+          requires: [cloudfront-update]
