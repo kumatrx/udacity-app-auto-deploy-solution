@@ -15,4 +15,6 @@
     cd backend
     sudo npm install -g npm@latest
     sudo npm install -g webpack-dev-server
+    sudo npm install
+    sudo npm build
     sudo pm2 start npm --name backend -- start
